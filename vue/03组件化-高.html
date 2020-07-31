@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 自定义组件内部不写内容时  会显示默认值   -->
+        <cpn></cpn>
+        <cpn>
+            <div>div元素</div>
+            <input type="text">
+        </cpn>
+        <cpn><span slot="left">标题</span></cpn>
+
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>组件</h2>
+            <!-- 插槽   插槽内部可填默认值-->
+            <slot name="left">左</slot>
+            <slot name="center">中</slot>
+            <slot name="right">右</slot>
+        </div>
+    </template>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                arr:[1,2,3,4,5]
+            },
+            methods:{
+
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 组件使用三步 1、Vue.extend() 创建组件构造器 2、Vue.component()注册组件 3、使用组件 -->
+    <div id="app">
+        <!-- <my-c></my-c>  -->
+        局部组件
+        <local @itemclick="getId" ref="aaa"></local>
+        父子组件
+        <!-- v-bind：绑定属性 后面的属性不支持驼峰  需要-转换 -->
+        <father :get-data="arr" ></father>
+        <!-- 父组件访问子组件  $children / $refs -->
+        <button @click="childTest"> 父组件访问子组件</button>
+        <!-- 子组件访问父组件$parent  很少用  访问根组件  $root -->
+    </div>
+    <script src="./js/vue.js"></script>
+    <!-- 1、分离写法  script标签   type必须为 text/x-template-->
+    <!-- <script type="text/x-template" id="cpn">
+        <div>
+            <h2>分离</h2>
+            <p>内容1</p>
+        </div>
+    </script> -->
+
+    <!-- template内要先嵌套个div -->
+    <template id="cpn">
+        <div>
+            <h2>{{title}}</h2>
+            <button v-for="item in testdata" @click="btnClick(item)">{{item.name}}</button>
+        </div>
+    </template>
+    <script>
+        //创建组件构造器
+        // const cpnCst = Vue.extend()
+        //注册组件 (全局的)
+        //Vue.component('my-c',{
+        //     //模板
+        //     template:`
+        //         <div>
+        //             <h2>标题</h2>
+        //             <p>内容1</p>
+        //         </div>
+        //     `
+        // });
+
+        //全局父组件   根组件向父组件传递数据 通过v-bind和props
+        const cpnF = Vue.extend({
+            template: `
+        <div>
+            <h2>父组件</h2>
+            <div>sucss:{{getData}} </div>
+            <child></child>
+        </div>
+            `,
+            components: {
+                child: {
+                    //模板
+                    template: `
+                        <div>
+                            <h2>标题</h2>
+                            <p>内容1</p>
+                        </div>
+                    `
+                }
+            },
+            //props不同方式
+            //props:['getdata'] // 此处getdata其实是个变量  （由于别扭  不常用数组）
+            props:{//限制类型    String Number  Boolean Array      Object   Date    Function    Symbol
+                //getdata:Array,//可是指定接受数据类型 可以写多个 [Array,Object]  
+                getData:{
+                    type:Array, 
+                    //author:Person  自定义类型
+                    default(){//指定默认值 当Object和Array设置默认值时  必须时函数
+                        return [1];
+                    }, 
+                    required:true//加上此属性表示getdata这个必须传值  不传值会报错
+                }
+            },
+        })
+        //root组件  根组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                arr:[1,2,3,4,5]
+            },
+            methods: {
+                getId(item){//自定义事件 默认把item传入  类似于默认事件会默认穿event对象
+                    console.log(item.id);
+                    
+                },
+                childTest(){
+                    // console.log(this.$children);//返回的是数组  当中间插入其他组件时  index会发生改变
+                    // this.$children[0].showMessage();
+                    console.log(this.$refs);//refs 为对象类型  默认是空对象
+                    
+                    this.$refs.aaa.showMessage()
+                    
+                    
+                }
+            },
+            components: {//局部组件
+                local: {
+                    //模板
+                    template: "#cpn",
+                    data(){//子组件内的data必须为function， 函数返回保存数据的对象
+                        return {
+                            title:'demo',
+                            testdata:[
+                                {id:1,name:'a'},
+                                {id:2,name:'b'},
+                                {id:3,name:'c'},
+                            ],
+                        }
+                    },
+                    methods:{
+                        //子集向父级传递事件    1、通过$emit()触发创建自定义事件  父级通过v-on来监听子组件自定义事件 
+                        btnClick(item){
+                            //发射事件 自定义事件 
+                            this.$emit('itemclick',item);//事件不能驼峰命名  item参数  类似于默认事件的event参数
+                        },
+                        showMessage(){
+                            console.log('message');
+                            
+                        }
+                    }
+                },
+                father: cpnF
+            },
+
+        });
+    </script>
+</body>
+
+</html>

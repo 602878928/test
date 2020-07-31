@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            color: #999;
+        }
+        .b{
+            color:#424242;
+        }
+    </style>
+</head>
+<body>
+<input type="text" class="a" value="输入关键字" onfocus="if(this.value == '输入关键字'){
+    this.value = '';this.className = 'b'} " onblur = "if(this.value == ''){this.value = '输入关键字'; this.className = 'a'}"> 
+    <script>
+        //this.className = 'b'
+        // document.onkeypress = function(e){
+        //     console.log(String.fromCharCode(e.charCode))
+        // }
+        // document.onkeydown = function(e){
+        //     console.log(String.fromCharCode(e.which))
+        // }
+        //  document.onkeypress = function(e){
+        //     console.log(e.charCode)
+        // }
+        var input = document.getElementsByTagName('input')[0]
+       
+    </script>
+</body>
+</html>

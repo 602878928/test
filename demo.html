@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="my/my.js"></script> -->
+<style>
+</style>
+<!-- <script src="./my/jquery-3.2.1.min.js"></script> -->
+<script src="./demo1.js" type="module" ></script>
+<script src="./demo3.js" type="module" ></script>
+<script src="./demo2.js" type="module" ></script>
+<!-- type="module"    模块化、防止js文件命名冲突 -->
+<!-- <script src="./demo1.js"></script> -->
+</head>
+<body>
+  <script>
+    //模块化开发
+    //1、html中引入js文件加 type="module"  定义模块化
+    //2、js中导出变量：1、export var num; 2、var num1,num2; export {num1,num2}  3、export default num;(一个js只能有一个export default)
+    //3、另一个js中导入 import { num } form './demo1.js'名字必须与导出变量名一致，2、import aaa form './demo.js'(导入默认变量 命名可以自定义)
+    // import * as obj form './demo1.js'   使用时变量 当对象属性使用  这样可以防止导入变量与本地变量命名冲突
+    
+     
+    // console.log(a,'a');
+    // console.log(b,'b');
+    // console.log(c,'c');
+    // console.log(d,'d');
+    // fnc();
+  </script>
+</body>
+</html>

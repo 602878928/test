@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div style="width: 100px;height: 100px;background-color: red;position:absolute;left: 0;top: 0;"></div>
+<body>
+    <script>
+     var div = document.getElementsByTagName('div')[0];
+    var disX,
+        disY;
+    var key = false;//开关
+    var firstTime,
+        lastTime;
+    div.onmousedown = function(e){
+        firstTime = new Date().getTime();
+        var event = e || window.event;
+        disX = event.pageX - parseInt(div.style.left);
+        disY = event.pageY - parseInt(div.style.top);
+        document.onmousemove = function(e){
+            var event = e || window.event;
+            div.style.left = event.pageX - disX + 'px';
+            div.style.top = event.pageY - disY + 'px';
+        }
+        document.onmouseup = function(){
+            lastTime = new Date().getTime();
+            if((lastTime - firstTime) < 300){//计时 ，时间过短 按click处理
+                console.log(lastTime - firstTime)
+                key = true;
+            }
+            document.onmousemove = null;
+        }
+    }
+    div.onclick = function(){
+        if(key){//区分拖拽和click
+            console.log('click');
+            key = false;
+        }
+    }
+    // drag(div);
+    // function drag(element){
+    //     var disX,
+    //         disY;
+    //     element.addEventListener('mousedown',function(e){
+    //         var e = e || window.event;
+    //         disX = e.pageX - parseInt(element.style.left);
+    //         disY = e.pageY - parseInt(element.style.top);
+    //         document.addEventListener('mousemove',mouseMove,false);
+    //         document.addEventListener('mouseup',function(){
+    //             document.removeEventListener('mousemove',mouseMove,false);
+    //         },false)
+    //     },false)
+    //     function mouseMove(e){
+    //         var e = e || window.event;
+    //         element.style.left = e.pageX - disX + 'px';
+    //         element.style.top = e.pageY - disY + 'px';
+    //     }
+    // }
+    
+    </script>
+</body>
+</html>

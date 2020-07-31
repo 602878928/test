@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn>11</cpn>
+        <cpn>
+          <!-- 作用域插槽  用于父组件想要改变子组件的数据展示方式 -->
+            <template slot-scope="slot">
+                <span v-for="item in slot.data">{{item}}</span>
+            </template>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>组件</h2>
+            <slot :data="arr">
+                <ul>
+                    <li v-for="item in arr">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+            },
+            methods:{
+
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    data(){
+                        return{
+                            arr:[1,2,3,4,5]
+                
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

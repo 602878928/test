@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="my/my.js"></script>
+  <style>
+  </style>
+  <script src="./my/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+  <script>
+    let data = { "code": 0, "body": [["站点去", "供水温度", "回水温度", "供水流量", "groupId", "groupType", "deviceCode"], ["1中水箱循环水", "28.7", "35.2", null, "GXD100100103", "GXD100100103106", "ANH_PLCXHS_C5ZSX_99"], ["五厂B中频循环水", "27.8", "33.0", null, "GXD100100106", "GXD100100106105", "ANH_PLCXHS_C9ZP_99"], ["五厂A中频循环水", "29.3", "33.2", "51.21", "GXD100100102", "GXD100100102106", "ANH_PLCXHS_C3ZP_99"], ["连拉循环水", "30.7", "39.6", "772.49", "GXD100100106", "GXD100100106105", "ANH_PLCXHS_C9LL_99"], ["5南水箱循环水", "33.42", "38.2", null, "GXD100100105", "GXD100100105103", "ANH_PLCXHS_C8NSX_99"], ["3水箱循环水", "29.5", "36.6", "376.84", "GXD100100104", "GXD100100104107", "ANH_PLCXHS_C6BSX_99"], ["阿瑟东粗中拉循环水", "32.8", "36.4", null, "GXD100100102", "GXD100100102106", "ANH_PLCXHS_C3ZL_99"], ["五厂南水箱循环水", null, null, null, "GXD100100103", "GXD100100103106", "ANH_PLCXHS_C5NSX_99"], ["九厂粗中拉循环水", "31.4", "37.9", "157.96", "GXD100100106", "GXD100100106105", "ANH_PLCXHS_C9ZL_99"], ["二厂连拉循环水", "30.9", "36.0", "339.07", "GXD100100101", "GXD100100101105", "ANH_PLCXHS_C2LL_99"], ["六厂中频循环水", "27.5", "32.2", "147.3", "GXD100100104", "GXD100100104107", "ANH_PLCXHS_C6ZP_99"], ["九厂南水箱循环水", "29.7", "36.1", "900.0", "GXD100100106", "GXD100100106105", "ANH_PLCXHS_C9NSX_99"], ["三厂水箱循环水", "31.7", "34.2", "542.84", "GXD100100102", "GXD100100102106", "ANH_PLCXHS_C3SX_99"], ["八厂中频循环水", "26.97", "32.49", null, "GXD100100105", "GXD100100105103", "ANH_PLCXHS_C8ZP_99"], ["五厂北水箱循环水", "30.1", "35.2", "113.63", "GXD100100103", "GXD100100103106", "ANH_PLCXHS_C5BSX_99"], ["五厂中拉循环水", null, null, null, "GXD100100103", "GXD100100103106", "ANH_PLCXHS_C5CZL_99"], ["二厂中频循环水", "25.0", "29.5", "0.0", "GXD100100101", "GXD100100101105", "ANH_PLCXHS_C2HD_99"], ["九厂北水箱循环水", "29.4", "35.1", "737.24", "GXD100100106", "GXD100100106105", "ANH_PLCXHS_C9BSX_99"], ["五厂中频循环水", "27.4", "31.4", "201.11", "GXD100100103", "GXD100100103106", "ANH_PLCXHS_C5ZP_99"], ["一厂水箱循环水", "29.5", "35.5", "124.3", "GXD100100100", "GXD100100100104", "ANH_PLCXHS_C1_99"]] }
+    console.log(data.body.length)
+    let str = ['一', '二', '三', '四', '五厂A', '五厂B', '五', '六', '七', '八', '九'];
+    let tableBody = []
+    let numSort = [];
+    let letterSort = []
+    str.forEach((node, i) => {
+      let len = node.length;
+      data.body.forEach((ele, j) => {
+        if (ele[0] != null && ele.length != 0 && ele[0].slice(0, len) == node) {
+          tableBody.push(ele);
+          data.body[j] = ''
+        }
+      })
+    })
+    data.body.forEach((node, i) => {
+      if (!isNaN(parseInt(node[0]))) {
+        numSort.push(node)
+      } else if (node != '') {
+        letterSort.push(node)
+      }
+    })
+    numSort.sort(function (str1, str2) {
+      return parseInt(str1[0]) - parseInt(str2[0]);
+    });
+    console.log('qwe', letterSort);
+    letterSort.sort(
+      function (param1, param2) {
+        return param1[2].localeCompare(param2[2], "zh");
+      }
+    );
+    let c = tableBody.concat(numSort);
+    console.log('c', c);
+    console.log('resultArray', letterSort);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // // console.log(str,'str',arr, encodeURI(str))
+    // str.forEach((node,i)=>{
+    //   str[i] = node.charCodeAt();
+    // })
+    // // str = encodeURI(str)
+    // // str = str.split(',')
+    // str.sort(function (str1, str2) {
+    //   return str2-str1;
+    //   // return str2.localeCompare(str1, 'zh');
+    // });
+    // str.forEach((node,i)=>{
+    //   str[i] = String.fromCharCode(node);;
+
+    // })
+    // arr.sort(function (str1, str2) {
+    //   return str1 - str2;
+    //   // return str2.localeCompare(str1, 'zh');
+    // });
+    // console.log(str,'str',arr)
+  </script>
+</body>
+
+</html>

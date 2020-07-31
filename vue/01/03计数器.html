@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <comput></comput>
+        <comput></comput>
+        <comput></comput>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>当前计数:{{count}}</h2>
+            <button @click="add">+</button>
+            <button @click="sub">-</button>
+        </div>
+    </template>
+    <script>
+        Vue.component('comput',{
+            template:'#cpn',
+            data(){
+                return{
+                count:0
+                }
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                },
+                sub:function(){
+                    this.count--;
+                    
+                }
+            }
+        })
+        const app = new Vue({
+            el:'#app',
+            data:{
+            },
+            component:{
+            },
+            methods:{
+            }
+
+        })
+    </script>
+    
+    
+</body>
+</html>

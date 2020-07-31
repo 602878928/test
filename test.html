@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="my/my.js"></script>
+<style>
+</style>
+<script src="./my/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+  <script>
+  var test =[{
+            "id": "XD",
+            "name": "兴达公司",
+            "type": 1,
+            "parentId": "null",
+            "sortNo": 1,
+            "children": [
+                {
+                    "id": "XD11",
+                    "name": "生产运营（一）",
+                    "type": 1,
+                    "parentId": "XD",
+                    "sortNo": 10,
+                    "children": [
+                        {
+                            "id": "XD1107",
+                            "name": "一厂",
+                            "type": 1,
+                            "parentId": "XD11",
+                            "sortNo": 235,
+                            "children": [
+                                {
+                                    "id": "XD110703",
+                                    "name": "一厂一车间",
+                                    "type": 1,
+                                    "parentId": "XD1107",
+                                    "sortNo": 250,
+                                    "children": [],
+                                    "deptSrcType4": "4",
+                                    "deptAliName": "一厂一车间"
+                                },
+                                ]
+                        }]
+                }]
+  }
+]
+  //递归
+  function dg(target){
+      let results = []
+      let len = target.length;
+              console.log(len)
+      for( i = 0; i < len; i++){
+              let  arguments =   {
+                'title' : target[i]['name'],
+                'value' : target[i]['id'],
+                'expand' : true,
+                'type' : target[i]['type'],
+              }
+              if( target[i]['children'].length > 0){
+                arguments['children'] = dg(target[i]['children']);
+              }
+              results.push(arguments)
+        }
+        return results;
+
+  }
+  var suc = dg(test);
+  console.log(suc,'!!!!!!!!!!')
+  </script>
+</body>
+</html>

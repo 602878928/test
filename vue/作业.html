@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        .active1{
+            color: red;
+        }
+        .active2{
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+<!-- 插值语法 -->
+        <ul>
+            <li v-on:click = 'changeClass(index)' :class="{active1:actIndex == index}" v-for = "(item, index) in message">{{index}} - {{item}}</li>
+    </div>
+    <script>
+        //在vue解析之前 div有一个v-cloak属性
+        //在vue解析之后  v-cloak属性被删除
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:[1,2,3,4,5],
+                act1:false,
+                actIndex:0
+            },
+            methods:{
+                changeClass:function(index){
+                    this.actIndex = index;
+                },
+                getclass:function(){
+                    return {active1 : this.act1}
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .content
+        {
+            border: 1px solid #ccc;
+            width: 440px;
+            overflow: hidden;
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="../my/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ($('#content').height() > 400)
+                $('#content').height(400);
+            $('#bigger').toggle(function() {
+                $('#content').height($('#content').height() + 100);
+                $('#bigger').html('缩小');
+            }, function() {
+                $('#content').height($('#content').height() - 100);
+                $('#bigger').html('放大');
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="content" class="content">
+        内容1<br />
+        内容2<br />
+         </div>
+    <br />
+    <span id="bigger">放大</span>
+</body>
+</html>

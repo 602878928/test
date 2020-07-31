@@ -1,0 +1,42 @@
+/* div{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+}
+#only{
+    background-color: red;
+}
+.demo{
+    background-color: green;
+}
+.demo{
+    color: red;
+}
+*{
+    background-color: black;
+}
+[class = 'aaa']{
+    background-color: yellow!important;
+}
+[id]{
+    background-color: blue;
+} */
+/* 父子选择器  取到子元素或以下所有元素 */
+.demo span{
+    background-color: red;
+}
+/* 直接父子选择器 */
+.demo > span{
+    background-color: green;
+}
+/* 并列选择器 */
+div.demo{
+    background-color: yellow;
+}
+
+/* 分组选择器 */
+em, 
+span, 
+strong{
+    color: blue;
+}

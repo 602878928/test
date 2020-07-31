@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document1</title>
+</head>
+<body>
+    <script>
+        var obj ={
+            name:'zhangsan',
+            car:['benchi','baoma'],
+            wife:{
+                name:'liu',
+                son:{
+                    name:'zhang',
+                }
+
+            }
+
+        }
+        var obj1 = {};
+        function copyObj(origin,target){
+            var target = target || {};
+                objStr = '[object Array]'
+                toStr = Object.prototype.toString;
+            for(var prop in origin){
+                if(origin.hasOwnProperty(prop)){
+                    if(typeof(origin[prop])=='object'){
+                       target[prop] =  toStr.call(origin[prop]) == objStr ? [] : {} ;
+                        copyObj(origin[prop],target[prop]);
+
+                    }else{
+                        target[prop] = origin[prop]
+                    }
+
+                }
+               
+            }
+            return target
+        }
+        copyObj(obj,obj1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+div{
+    font-size: 16px; /*字体大小默认16px*/
+    font-weight: bold;/*字体粗细*/
+    border: 1px solid black;/*容器边框样式*/
+    text-align: center;/*文本对齐方式*/
+    height: 20px;/*容器高度*/
+    line-height: 20px;/*单行文本所占高度  文本垂直方向上居中方法：单行文本所占高度 = 容器高度 */
+    text-indent:2em ;/*首行缩进  1em = font-size*/
+    text-decoration: line-through;/*文本中划线*/
+    text-decoration: underline;/*文本下划线*/
+    cursor: pointer;/*光标变成小手*/
+}
+/* 伪类选择器  权重10*/
+a:hover{
+    background-color: #f40;/*hover内写的样式是鼠标移入元素后显示的样式*/
+}
+
+/*定位*/
+.demo{
+    position: absolute;/*脱离原来位置定位  另起一个图层（可与其他元素重叠）
+    相对于最近的有定位的父级进行定位，如果没有那么相对于文档进行定位，先将目标父级
+    变为定位元素作为参照物，配合relative使用*/
+    position: relative;/*保留原来位置定位  另起一个图层（可与其他元素重叠）
+    相对于原来的位置进行定位，用于将父级变为定位元素做为参照物*/
+    position: fixed;/*类似网页两侧广告的定位*/
+    left: 100px;/*位置*/
+    right: 100px;
+}
+
+/*居中*/
+.demo1{
+    position: fixed;
+    left: 50%;
+    top:50%;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin-top: -50px;/*半个身位*/
+    margin-left: -50px;
+}
+
+
+ /* 三大模型：层模型、盒模型、浮动模型
+
+盒子margin塌陷
+解决方案  利用bfc（盒子格式化上下文）解决，改变父级渲染规则
+触发盒子bfc方法（以下任意一条即可）
+position:absolute;
+display:inline-block;
+float:left/right;
+overflow:hidden;//溢出盒子的部分隐藏展示  */
+
+/* float:left/right(会按快的顺序横排)
+1、浮动元素产生浮动流
+所有产生了浮动流的元素。块级元素看不到他们
+产生了bfc的元素和文本属性类的元素（inline）以及文本都能看到浮动元素
+2、清除浮动流方法：clear:both     写在最后一个浮动流元素后 */
+
+
+/* 伪元素：每一个元素都自带为元素，位于元素逻辑的开始和结尾
+span::before{content: '内容';}和span::after{content: '内容';}对伪元素进行操作
+伪元素没有html结构，display：inline; 天生为行级元素
+清除float浮动流时可用为元素
+div::after{
+    content: '';
+    clear: both;-->清除浮动流必须为块级元素才可生效
+    display: inline-block;
+} */
+
+/* 
+设有position:absolute;float:left/:right;系统会从内部把元素转换为inline-block行级块儿元素 */
+
+/* 
+需求：溢出容器要打点展示
+1、单行文本溢出处理 
+2、多行文本只做截断不做打点*/
+p{
+    white-space: nowrap;/*文本到容器边界时 取消换行*/
+    overflow: hidden;/*溢出部分隐藏*/
+    text-overflow:ellipsis;/*文本溢出部分打点展示*/
+}
+
+图片
+div{
+    background-image: url(地址);/*地址不用加引号*/
+    background-size: 100px 100px;/*宽 高*/
+    background-repeat: no-repeat;/*当图片铺不满容器时默认为重复平铺，这里取消默认*/
+    background-position: center center;/*图片位置可填百分数。可填top bottom等*/
+}
+
+
+需求：图片代替文本，正常情况下显示图片，在没有css加持下显示文本
+a{
+    /*方案二*/
+    display: inline-block;/*a标签为行级元素，要改变宽高需要将其变为行级块元素或块元素*/
+    text-decoration: none;/*取消a标签下划线*/
+    color: #424242;
+    width: 190px;
+    height: 0px;/*高度设为零 ，文本会溢出*/
+    padding-top: 100px;/*利用padding可以填充背景，不可填充文本特性*/
+    overflow: hidden;/*溢出文本不可见*/
+    background-image: url(图片地址);
+    background-size: 190px 100px ;
+
+    /*方案一 文本利用首行缩进，将文本挤出容器，在设置溢出文本不可见*/
+    text-indent: 200px;/*首行缩进*/
+    white-space: nowrap;/*取消换行*/
+    overflow: hidden;/*溢出文本不可见*/
+    white-space: nowrap;/*文本不换行*/
+    text-overflow: ellipsis;/* 文本溢出的部分用 。。。代替*/
+    max-width: 90%;/*百分比参照父级尺寸*/
+    height: -webkit-fill-available;/*高度充满父级元素 css3*/
+    width: fit-content; /*宽度根据文本内容决定*/
+    width: min-content;/*此属性写在父级内  宽度根据所有子元素最小的宽度对齐，max-content同理*/
+}
+
+
+
+行级元素只能嵌套行级元素
+块级元素可以嵌套任何元素
+特殊 ： 1、p标签不可以嵌套div
+        2、a标签不可以嵌套a标签

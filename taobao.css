@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #424242;
+    list-style:none ;
+}
+.nav{
+    list-style: none;/*去掉无序列表的点*/
+    display: inline-block;
+}
+.nav::after{
+    content: '';
+    display: block;
+    clear: both;/*清除float浮动流  只能作用域块儿元素*/
+}
+a{
+    text-decoration: none;/*去掉文本下划线*/
+    
+}
+.nav .list-item{
+    float: left;
+    margin: 0 10px;
+    height: 30px;
+}
+.nav .list-item a{
+    color: #f40;
+    font-weight: bold;
+    line-height: 30px;
+    padding: 0 10px;
+    height: 30px;
+    display:inline-block;
+    border-radius: 15px;
+}
+.nav .list-item a:hover{
+    color: #fff;
+    background-color: #f40;
+}
+
+
+
+
+.head::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.left,
+.right{
+    list-style: none;
+}
+.left .list-item{
+    float: left;
+}
+.right .list-item{
+    float: left;
+}
+.list-item{
+    margin: 0 10px;
+    line-height: 40px;
+    color: rgb(68, 59, 59);
+}
+.imp{
+    color: red!important;
+}
+.list-item a:hover{
+    color: red;
+
+}
+.taobao{
+    display: inline-block;
+    width: 200px;
+    height: 0px;
+    padding-top: 100px;
+    background-image: url(./taobao/2.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+
+    
+}
+
+.chaxun::after{
+    content: '';
+    display: inline-block;
+    clear: both;
+}
+.chaxun{
+    height: 100px;
+}
+.sousuo{
+    width: 500px;
+    height: 40px;
+    border: 2px solid rgb(255,136,0);
+    border-radius: 50px;
+}
+.tijiao{
+    width: 80px;
+    height: 40px;
+    color: #fff;
+    background-color: rgb(255,136,0);
+    border: 2px solid;
+    border-radius: 50px;
+}
+
+.anniu .an button{
+    width: 40px;
+    height: 25px;
+    border: 0px solid;
+    border-radius: 10px;
+    background-color: #fff;
+    float: left;
+    margin: 0 px;
+    color: #f40;
+    
+}
+.anniu .an button:hover{
+    background-color: rgb(255,238,229);
+}

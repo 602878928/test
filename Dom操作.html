@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document1</title>
+</head>
+<body>
+    <div>
+        123
+        <strong>
+            <p></p>
+            <span></span>
+        </strong>
+        aaa
+        <p></p>
+        <!-- asd -->
+        <span></span>
+        
+    </div>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    var strong = document.getElementsByTagName('strong')[0];
+    //获取指定兄弟元素
+    function retSibling(e , n){
+        while(e && n){
+            if(n > 0){
+                if( e.nextElementSibling){
+                    e = e.nextElementSibling;
+                }
+                else{
+                    //e = e.nextSibling
+                    do{
+                        e = e.nextSibling
+                    }while(e && e.nodeType != 1)
+                }
+                n--;
+            }else{
+                if(e.previousElementSibling){
+                    e = e.previousElementSibling;
+                }else{
+                    do{
+                        e= e.previousSibling;
+                    }while(e && e.nodeType != 1)
+                }
+                n++;
+            }
+        }
+        return e 
+    }
+    //返回指定元素的第n层祖先
+    function retParentElement(e, n){
+        while(e&&n){
+            e = e.parentElement
+            n--;
+        }
+        return e;
+    }
+
+       
+</script>
+</body>
+</html>

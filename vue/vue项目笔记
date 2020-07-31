@@ -1,0 +1,22 @@
+mounted(){
+    const that = this
+        window.onresize1 = () => {
+        return (() => {
+            window.screenWidth = document.body.clientWidth
+            that.screenWidth = window.screenWidth
+            console.log('mounted111');
+        })()
+    }
+//注销window.onresize事件
+destroyed(){
+  window.onresize = null;
+}
+
+什么是Vue.nextTick()？？
+ 
+
+定义：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+所以就衍生出了这个获取更新后的DOM的Vue方法。所以放在Vue.nextTick()回调函数中的执行的应该是会对DOM进行操作的 js代码；
+
+理解：nextTick()，是将回调函数延迟在下一次dom更新数据后调用，简单的理解是：当数据更新了，在dom中渲染后，自动执行该函数，

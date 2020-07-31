@@ -1,0 +1,61 @@
+
+//作者
+git config user.name，然后回车之后就可以看到当前的提交者姓名
+然后根据自己的姓名对提交者姓名进行设置，输入命令：git config --global user.name "用户名"
+git config --global user.email "邮箱"，然后回车
+subl .gitconfig  使用sublime工具查看git配置文件（内有全局的作者信息）
+git config --list //# 显示当前的Git配置
+git config -e [--global]  编辑Git配置文件
+
+
+git init 初始化‘生产车间’
+git sataus 查看车间状态
+.gitignore 忽略文件，在内部配置不想提交的文件
+git add . 将全部文件加入暂存库
+git commit -m  '备注'  提交
+git rm readme.text 删除版本库内文件，但是本地文件也会被删除
+git rm --cached readme.text 仅删除版本库内的文件  保留本地文件
+git mv oldename newname 改名  改名后再 commit
+git log --name-only  查看仓库上传记录
+
+//生成密钥
+ssh-keygen -t rsa
+进入 cd ~/.ssh 查看密钥
+id_rsa.pub为公钥
+
+
+//1、创建本地库并完成初始提交
+git init
+git add README.md
+git commit -m '备注'
+2、添加远程仓库
+git remote add origin git@github.com:602878928/test.git(ssh链接)
+3、查看远程库
+git remote -v
+4、推送数据到远程仓库并关联
+git push -u origin master   //后续推送仅需git push 即可
+
+
+本地新建分支  git checkout -b branchName
+ git push --set-upstream origin branchName  //上传并在远程新建关联本地分支
+
+ 
+ //新加入asd开发组
+ git clone git@github.com:602878928/test.git newPerson 把远程库克隆到newPerson文件夹下
+ //默认是master分支
+ 通过 git branch -a 查看远程和本地全部分支
+ 如果需要在某个分支下工作 如ask分支
+ 可以 git pull origin ask:ask  把远程库的ask分支拉取到本地ask分支
+ git checkout ask  本地切换分支到ask分支 
+
+//asd模块开发完成后合并如master主分支
+1、在master主分支下更新最新内容 git pull
+2、git checkout asd 切换到asd分支下
+3、git rebase master  把asd分支的起点切到master分支的末端
+4、再git checkout master 切换到master分支下
+5、git merge asd 合并asd分支
+6、git push 推送到远程服务器仓库
+7、git branch --merged  查看合并情况
+8、git push origin --delete asd 删除远程asd分支 git branch -d asd //删除本地分支
+
+
